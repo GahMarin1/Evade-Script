@@ -1,0 +1,60 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Evade Script", HidePremium = false, SaveConfig = true, ConfigFolder = "EvadeTest"})
+
+OrionLib:MakeNotification({
+Name = "Warning",
+Content = "Executado Com Sucesso",
+Image = "rbxassetid://4483345998",
+Time = 5
+})
+
+local MainTab = Window:MakeTab({
+Name = "Main",
+Icon = "rbxassetid://4483345998",
+PremiumOnly = false
+})
+
+MainTab:MakeButton({
+Name = "Speed Boost",
+Callback = function()
+local player = game.Players.LocalPlayer
+player.Character.Humanoid.WalkSpeed = 50
+end
+})
+
+MainTab:MakeButton({
+Name = "Normal Speed",
+Callback = function()
+local player = game.Players.LocalPlayer
+player.Character.Humanoid.WalkSpeed = 16
+end
+})
+
+MainTab:MakeButton({
+Name = "Infinite Jump",
+Callback = function()
+local player = game.Players.LocalPlayer
+local UIS = game:GetService("UserInputService")
+
+UIS.JumpRequest:Connect(function()
+player.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+end)
+end
+})
+
+MainTab:MakeButton({
+Name = "Super Jump",
+Callback = function()
+local player = game.Players.LocalPlayer
+player.Character.Humanoid.JumpPower = 100
+end
+})
+
+MainTab:MakeButton({
+Name = "Chat Bypass",
+Callback = function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Chat-Bypasser-5919"))()
+end
+})
+
+OrionLib:Init()
